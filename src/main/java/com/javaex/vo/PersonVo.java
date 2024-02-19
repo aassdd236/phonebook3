@@ -64,6 +64,5 @@ public class PersonVo {
 	public String toString() {
 		return "PersonVo [personId=" + personId + ", name=" + name + ", hp=" + hp + ", company=" + company + "]";
 	}
-	
 
 }
