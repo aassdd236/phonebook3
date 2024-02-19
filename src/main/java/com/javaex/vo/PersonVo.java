@@ -65,7 +65,5 @@ public class PersonVo {
 		return "PersonVo [personId=" + personId + ", name=" + name + ", hp=" + hp + ", company=" + company + "]";
 	}
 	
-	
-	
 
 }
