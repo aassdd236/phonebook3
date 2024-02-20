@@ -40,7 +40,12 @@
 		<th>회사(company)</th>
 		<td><%=personList.get(i).getCompany() %></td>
 	</tr>
-	
+	<tr>
+		<td>
+			<a href="/phonebook3/pbc?action=delete&no=<%=personList.get(i).getPersonId() %>">[삭제]</a>
+		</td>
+		<td>[수정]</td>
+	</tr>
 </table>
 <br>
 <%
