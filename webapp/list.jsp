@@ -24,6 +24,7 @@
 </p>
 
 <% 
+
 	for(int i=0; i<personList.size(); i++){
 
 %>
@@ -44,7 +45,9 @@
 		<td>
 			<a href="/phonebook3/pbc?action=delete&no=<%=personList.get(i).getPersonId() %>">[삭제]</a>
 		</td>
-		<td>[수정]</td>
+		<td>
+		<a href="/phonebook3/pbc?action=update&no=<%=personList.get(i).getPersonId() %>">[수정]</a>
+		</td>
 	</tr>
 </table>
 <br>
