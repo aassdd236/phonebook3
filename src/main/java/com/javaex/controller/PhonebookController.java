@@ -3,7 +3,6 @@ package com.javaex.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.PhoneDao;
+import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVo;
 
 @WebServlet("/pbc")
@@ -30,11 +30,11 @@ public class PhonebookController extends HttpServlet {
 		if("wform".equals(action)) {
 			System.out.println("wform:등록폼");
 
-			//jsp한테 html그리기 응답
-			RequestDispatcher rd=request.getRequestDispatcher("/writeForm.jsp");
-			rd.forward(request, response);
+			WebUtil.forward(request, response, "/WEB-INF/writeForm.jsp");
 			
-
+			//jsp한테 html그리기 응답
+//			RequestDispatcher rd=request.getRequestDispatcher("/writeForm.jsp");
+//			rd.forward(request, response);
 
 		}else if("insert".equals(action)){
 			System.out.println("insert: 등록");
@@ -54,8 +54,10 @@ public class PhonebookController extends HttpServlet {
 			phoneDao.personInsert(personVo);
 
 			//리다이렉트 = 엔터 효과를 낸다 > 주소를 바꿔 줌
-			response.sendRedirect("/phonebook3/pbc?action=list");
+			//response.sendRedirect("/phonebook3/pbc?action=list");
 
+			WebUtil.redirect(request, response, "/phonebook3/pbc?action=list");
+			
 			//db에서 전체 데이터 가져오기
 			//List<PersonVo> personList=phoneDao.personSelect();
 			//System.out.println(personList);
@@ -79,8 +81,10 @@ public class PhonebookController extends HttpServlet {
 			phoneDao.personDelete(no);
 
 			//리다이렉트
-			response.sendRedirect("/phonebook3/pbc?action=list");
+			//response.sendRedirect("/phonebook3/pbc?action=list");
 
+			WebUtil.redirect(request, response, "/phonebook3/pbc?action=list");
+			
 		}else if("update".equals(action)) {
 			System.out.println("update:수정");
 			int no=Integer.parseInt(request.getParameter("no"));
@@ -95,8 +99,9 @@ public class PhonebookController extends HttpServlet {
 			request.setAttribute("hp", hp);
 			request.setAttribute("company", company);
 			
-			RequestDispatcher rd=request.getRequestDispatcher("/update.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd=request.getRequestDispatcher("/update.jsp");
+//			rd.forward(request, response);
+			WebUtil.forward(request, response, "/WEB-INF/update.jsp");
 			
 		}else if("updateUser".equals(action)) {
 			System.out.println("updateUser:수정");
@@ -117,7 +122,9 @@ public class PhonebookController extends HttpServlet {
 			phoneDao.personUpdate(personVo);
 
 			//리다이렉트
-			response.sendRedirect("/phonebook3/pbc?action=list");
+			//response.sendRedirect("/phonebook3/pbc?action=list");
+			WebUtil.redirect(request, response, "/phonebook3/pbc?action=list");
+			
 		}else{
 			System.out.println("list:리스트");
 
@@ -131,12 +138,11 @@ public class PhonebookController extends HttpServlet {
 			//데이터 담기, 포워드
 			request.setAttribute("personList", personList);
 
-			RequestDispatcher rd=request.getRequestDispatcher("/list.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd=request.getRequestDispatcher("/list.jsp");
+//			rd.forward(request, response);
 
+			WebUtil.forward(request, response, "/WEB-INF/list.jsp");
 		}
-		
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
