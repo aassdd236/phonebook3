@@ -99,8 +99,15 @@ public class PhonebookController extends HttpServlet {
 			System.out.println("update:수정");
 			int no=Integer.parseInt(request.getParameter("no"));
 			System.out.println(no);
+			
+			String name=request.getParameter("name");
+			String hp=request.getParameter("hp");
+			String company=request.getParameter("company");
 
 			request.setAttribute("no", no);
+			request.setAttribute("name", name);
+			request.setAttribute("hp", hp);
+			request.setAttribute("company", company);
 			
 			RequestDispatcher rd=request.getRequestDispatcher("/update.jsp");
 			rd.forward(request, response);
@@ -112,7 +119,7 @@ public class PhonebookController extends HttpServlet {
 			
 			//db 사용
 			PhoneDao phoneDao=new PhoneDao();
-
+			
 			//삭제
 			String name=request.getParameter("name");
 			String hp=request.getParameter("hp");

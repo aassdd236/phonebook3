@@ -20,17 +20,17 @@
 <form action="http://localhost:8080/phonebook3/pbc" method="get">
 	<div>
 		<label>이름(name)</label>
-		<input type="text" name="name" value="">
+		<input type="text" name="name" value="<%=request.getAttribute("name")%>">
 	</div>
 
 	<div>
 		<label>핸드폰(hp)</label>
-		<input type="text" name="hp" value="">
+		<input type="text" name="hp" value="<%=request.getAttribute("hp")%>">
 	</div>
 
 	<div>
 		<label>회사(company)</label>
-		<input type="text" name="company" value="">
+		<input type="text" name="company" value="<%=request.getAttribute("company")%>">
 	</div>
 	<input type="hidden" name="no" value="<%=request.getAttribute("no")%>">
 		
