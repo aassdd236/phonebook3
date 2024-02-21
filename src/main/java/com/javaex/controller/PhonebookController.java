@@ -33,6 +33,8 @@ public class PhonebookController extends HttpServlet {
 			//jsp한테 html그리기 응답
 			RequestDispatcher rd=request.getRequestDispatcher("/writeForm.jsp");
 			rd.forward(request, response);
+			
+
 
 		}else if("insert".equals(action)){
 			System.out.println("insert: 등록");
@@ -64,22 +66,6 @@ public class PhonebookController extends HttpServlet {
 			//포워드
 			//RequestDispatcher rd=request.getRequestDispatcher("/list.jsp");
 			//rd.forward(request, response);
-
-		}else if("list".equals(action)){
-			System.out.println("list:리스트");
-
-			//db 사용
-			PhoneDao phoneDao=new PhoneDao();
-
-			//리스트 가져오기
-			List<PersonVo> personList=phoneDao.personSelect();
-			System.out.println(personList);
-
-			//데이터 담기, 포워드
-			request.setAttribute("personList", personList);
-
-			RequestDispatcher rd=request.getRequestDispatcher("/list.jsp");
-			rd.forward(request, response);
 
 		}else if("delete".equals(action)) {
 			System.out.println("delete:삭제");
@@ -132,7 +118,23 @@ public class PhonebookController extends HttpServlet {
 
 			//리다이렉트
 			response.sendRedirect("/phonebook3/pbc?action=list");
-		}	
+		}else{
+			System.out.println("list:리스트");
+
+			//db 사용
+			PhoneDao phoneDao=new PhoneDao();
+
+			//리스트 가져오기
+			List<PersonVo> personList=phoneDao.personSelect();
+			System.out.println(personList);
+
+			//데이터 담기, 포워드
+			request.setAttribute("personList", personList);
+
+			RequestDispatcher rd=request.getRequestDispatcher("/list.jsp");
+			rd.forward(request, response);
+
+		}
 		
 
 	}
