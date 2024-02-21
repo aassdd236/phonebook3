@@ -44,7 +44,7 @@ public class PhoneDao {
 			count = pstmt.executeUpdate();
 
 			// 4.결과처리
-			System.out.println(count + "건 등록 되었습니다.");
+			System.out.println(count + "건 삭제 되었습니다.");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
